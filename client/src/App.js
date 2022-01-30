@@ -4,17 +4,15 @@ import "./App.css";
 import { useEffect, useState } from 'react';
 import './App.css';
 import contract from './contracts/NFTCollectible.json';
-//import { ethers } from 'ethers';
 
-const contractAddress = "0x355638a4eCcb777794257f22f50c289d4189F245";
+
+const contractAddress = "0x04b1600408594E5D8E6dD31c8D68205482A3eB97";
 const abi = contract.abi;
+console.log(abi)
 
 function App() {
 
   const [currentAccount, setCurrentAccount] = useState(null);
-    
- 
-
   const checkWalletIsConnected = async () => {
     const { ethereum } = window;
 
@@ -57,25 +55,28 @@ function App() {
       const { ethereum } = window;
 
       if (ethereum) {
-        
-         // Get network provider and web3 instance.
+
+        // Get network provider and web3 instance.
         const web3 = await new Web3(Web3.givenProvider || 'http://localhost:7545');
 
-      // Use web3 to get the user's accounts.
-      const accounts = await web3.eth.getAccounts();
-      ///create a contrat instance
-    //replace ethers withe web3 js contract instnae
+        // Use web3 to get the user's accounts.
+        const accounts = await web3.eth.getAccounts();
+        ///create a contrat instance
+        //replace ethers withe web3 js contract instnae
         //const provider = new ethers.providers.Web3Provider(ethereum);
-        //const signer = provider.getSigner();
-        const nftContract = new web3.eth.Contract(abi,contractAddress);
+        const account = web3.eth.accounts.create();
+        const nftContract = new web3.eth.Contract(abi, contractAddress);
         console.log(nftContract);
         console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(1, { value: '10000000000' });
+        let nftTxn = await nftContract.methods.mintNFTs(1).send({from: accounts[0],value: web3.utils.toWei("0.0001", "ether")}).on('receipt',function(){
+          console.log('receipt')
+        });
+        console.log(nftTxn.transactionHash)
 
         console.log("Mining... please wait");
-        await nftTxn.wait();
+        //await nftTxn.wait();
 
-        console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
+        console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.transactionHash}`);
 
       } else {
         console.log("Ethereum object does not exist");
@@ -108,7 +109,7 @@ function App() {
 
   return (
     <div className='main-app'>
-      <h1>Scrappy Squirrels Tutorial</h1>
+      <h1>Royal Cheese Fondue Club</h1>
       <div>
         {currentAccount ? mintNftButton() : connectWalletButton()}
       </div>
