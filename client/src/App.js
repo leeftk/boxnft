@@ -4,6 +4,10 @@ import "./App.css";
 import { useEffect, useState } from 'react';
 import './App.css';
 import contract from './contracts/NFTCollectible.json';
+import Card from 'react-bootstrap/Card'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CheeseLogo from './cheese.svg';
+import CheeseMain from './cheesemain.svg';
 
 
 const contractAddress = "0x04b1600408594E5D8E6dD31c8D68205482A3eB97";
@@ -68,7 +72,7 @@ function App() {
         const nftContract = new web3.eth.Contract(abi, contractAddress);
         console.log(nftContract);
         console.log("Initialize payment");
-        let nftTxn = await nftContract.methods.mintNFTs(1).send({from: accounts[0],value: web3.utils.toWei("0.0001", "ether")}).on('receipt',function(){
+        let nftTxn = await nftContract.methods.mintNFTs(1).send({ from: accounts[0], value: web3.utils.toWei("0.0001", "ether") }).on('receipt', function () {
           console.log('receipt')
         });
         console.log(nftTxn.transactionHash)
@@ -108,10 +112,31 @@ function App() {
   }, [])
 
   return (
-    <div className='main-app'>
-      <h1>Royal Cheese Fondue Club</h1>
-      <div>
-        {currentAccount ? mintNftButton() : connectWalletButton()}
+    <div className='App' style={{backgroundColor: "black" }}>
+      <div className='main-app'>
+        <h1 className="RCFPtitle">RC<img className="svg"
+          src={CheeseLogo}
+          alt="new"
+        />FP</h1>
+        <button className="About-btn"> about</button>
+        <div className="container">
+          <Card className="texty" bg="black" ><h2>...join the cheesiest party around</h2></Card>
+          <Card className="carddy" bg="black" border="white"><img
+            src="https://ak.picdn.net/shutterstock/videos/1015029310/thumb/10.jpg"
+            alt="new"
+          /></Card>
+        </div>
+        <Card className="paragraph" bg="black">
+          <h2>Perks of joining our club</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+            sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+          </Card>
+        <div>
+          {currentAccount ? mintNftButton() : connectWalletButton()}
+        </div>
       </div>
     </div>
   )
