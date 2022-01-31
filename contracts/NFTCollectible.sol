@@ -21,23 +21,9 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
     constructor(string memory baseURI) ERC721("SomethingCOOl", "Hello") {
         setBaseURI(baseURI);
     }
-    
-    function reserveNFTs() public onlyOwner {
-        uint totalMinted = _tokenIds.current();
-
-        require(totalMinted.add(10) < MAX_SUPPLY, "Not enough NFTs left to reserve");
-
-        for (uint i = 0; i < 10; i++) {
-            _mintSingleNFT();
-        }
-    }
-    
+      
     function _baseURI() internal view virtual override returns (string memory) {
         return baseTokenURI;
-    }
-    
-    function setBaseURI(string memory _baseTokenURI) public onlyOwner {
-        baseTokenURI = _baseTokenURI;
     }
     
     function mintNFTs(uint _count) public payable {

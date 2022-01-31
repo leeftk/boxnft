@@ -109,7 +109,7 @@ function App() {
 
   return (
     <div className='main-app'>
-      <h1>Royal Cheese Fondue Club</h1>
+      <h1>Trulffe NFT Box</h1>
       <div>
         {currentAccount ? mintNftButton() : connectWalletButton()}
       </div>
