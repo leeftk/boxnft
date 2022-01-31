@@ -18,7 +18,7 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
     
     string public baseTokenURI;
     
-    constructor(string memory baseURI) ERC721("SomethingCOOl", "Hello") {
+    constructor(string memory baseURI, string memory name, string memory symbol) ERC721(name, symbol) {
         setBaseURI(baseURI);
     }
       
