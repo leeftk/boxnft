@@ -120,21 +120,21 @@ function App() {
         />FP</h1>
         <button className="About-btn"> about</button>
         <div className="container">
-          <Card className="texty" bg="black" ><h2>...join the cheesiest party around</h2></Card>
+          {/* <Card className="texty" bg="black" ><h2>...join the cheesiest party around</h2></Card> */}
           <Card className="carddy" bg="black" border="white"><img
             src="https://ak.picdn.net/shutterstock/videos/1015029310/thumb/10.jpg"
             alt="new"
           /></Card>
         </div>
-        <Card className="paragraph" bg="black">
-          <h2>Perks of joining our club</h2>
+        {/* <Card className="paragraph" bg="black">
+          {/* <h2>Perks of joining our club</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
             laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
             dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
             sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-          </Card>
-        <div>
+          </Card> */}
+        <div> */}
           {currentAccount ? mintNftButton() : connectWalletButton()}
         </div>
       </div>
